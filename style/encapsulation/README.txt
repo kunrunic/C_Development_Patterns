@@ -1,5 +1,7 @@
 ADD TEST FILE
 
+아래와 같이 캡슐화 케이스 비 캡슐화 케이스의 확연한 차이를 알 수 있다.
+캡슐화의 시작이 C를 OOP 스럽게 개발하는 시작이다. (^^ 직접 접근하려고하면 컴파일이 안되요!!)
 
 >>> Case. notEncapsulation
 # 6 "other_logic.c" 2
