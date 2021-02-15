@@ -8,6 +8,11 @@
 int main(int argc, char **argv) {
 
     tEncapsulation* cap = new();
-    destory(cap);
+    init(cap, 100, "encapsulation");
+    // can't call __display() function because it's hidden.
+    __display(cap); // << compile fail. (warning and error)
+    // not exist public.h but compile successed.
+    display(cap);  // << compile success. (warning)
+    destory(cap); 
     return 0;
 }

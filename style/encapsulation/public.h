@@ -2,4 +2,5 @@
 typedef void* tEncapsulation;
 
 tEncapsulation* new();
-void destory(tEncapsulation *st) ;
+void init(tEncapsulation* st, int idx, char* name);
+void destory(tEncapsulation* st) ;
