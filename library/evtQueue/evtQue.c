@@ -349,7 +349,7 @@ int evtQue_destroy( int idx ) {
 int evtQue_notify( int idx, void *data, fEvtNoti func )
 {
 	tEvtThread* ethr = _evtQue_instances( idx );
-	if( ethr == NULL ) return eEvtQue_SUCCESS;
+	if( ethr == NULL ) return eEvtQue_INVALID_PARAM;
 	// evt thread의 현재 사용중인 que 개수가
 	// 논리적인 max que 개수를 넘어가면 들어오는 로그는 모두 버린다.
 	if( evt_getMaxQcnt(idx) <= evtQue_getQcnt(idx) ) return eEvtQue_QUEUE_FULL;
@@ -358,7 +358,11 @@ int evtQue_notify( int idx, void *data, fEvtNoti func )
 	if( noti == NULL ) return eEvtQue_MEM_ALLOC_FAIL;
 	noti->data = data;
 	noti->func = func;
-	return _evtQue_push( ethr, noti );
+	int rv = _evtQue_push( ethr, noti );
+	if( rv < eEvtQue_SUCCESS ) {
+		free(noti);
+	}
+	return rv;
 }
 
 /**
